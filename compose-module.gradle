@@ -4,18 +4,16 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-parcelize'
 
 android {
-    compileSdk ProjectConfig.compileSdk
-    namespace ProjectConfig.appId
+    compileSdk 34
 
     defaultConfig {
-        minSdk ProjectConfig.minSdk
-        targetSdk ProjectConfig.targetSdk
-        versionCode ProjectConfig.versionCode
-        versionName ProjectConfig.versionName
+        minSdk 21
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,6 +26,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.5.1"
     }
 }
 

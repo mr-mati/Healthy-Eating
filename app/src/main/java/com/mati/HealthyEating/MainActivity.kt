@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mati.HealthyEating.ui.theme.HealthyEatingTheme
+import com.mati.onboarding_presentation.welcome.WelcomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +21,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             HealthyEatingTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    WelcomeScreen(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize()
                     )
                 }
             }
@@ -41,7 +43,5 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    HealthyEatingTheme {
-        Greeting("Android")
-    }
+    WelcomeScreen()
 }
