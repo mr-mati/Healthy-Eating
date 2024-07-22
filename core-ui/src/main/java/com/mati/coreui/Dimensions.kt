@@ -1,4 +1,4 @@
-package com.plcoding.core_ui
+package com.mati.coreui
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.unit.Dp

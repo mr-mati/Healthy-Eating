@@ -1,4 +1,4 @@
-package com.plcoding.core_ui
+package com.mati.coreui
 
 import androidx.compose.ui.graphics.Color
 
