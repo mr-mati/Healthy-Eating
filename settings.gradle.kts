@@ -22,4 +22,7 @@ dependencyResolutionManagement {
 rootProject.name = "Healthy Eating"
 include(":app")
 include(":core")
-include(":CoreUi")
+include(":core-ui")
+include(":onboarding")
+include(":onboarding:onboarding_domain")
+include(":onboarding:onboarding_presentation")
