@@ -88,6 +88,11 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
+    implementation(project(Modules.core))
+    implementation(project(Modules.coreUi))
+    implementation(project(Modules.onboardingPresentation))
+    implementation(project(Modules.onboardingDomain))
+
 }
 
 kapt {

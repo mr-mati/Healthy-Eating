@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.plcoding.calorytracker",
+  "applicationId": "com.mati.HealthyEating",
   "variantName": "release",
   "elements": [
     {
