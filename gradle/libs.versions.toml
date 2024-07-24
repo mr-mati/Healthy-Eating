@@ -1,4 +1,5 @@
 [versions]
+animation = "1.6.8"
 compiler = "1.5.14"
 composeCompailerVersion = "1.5.1"
 agp = "8.5.0"
@@ -22,6 +23,7 @@ room = "2.6.1"
 hilt = "2.50"
 
 [libraries]
+androidx-animation = { module = "androidx.compose.animation:animation", version.ref = "animation" }
 androidx-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "compiler" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
