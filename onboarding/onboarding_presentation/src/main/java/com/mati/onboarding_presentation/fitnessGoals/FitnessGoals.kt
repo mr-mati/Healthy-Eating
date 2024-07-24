@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.personalInformation
+package com.mati.onboarding_presentation.fitnessGoals
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -45,17 +45,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mati.HealthyEating.R
 import com.mati.onboarding_presentation.components.ActionButton
-import com.mati.onboarding_presentation.personalInformation.activity.ActivityItem
-import com.mati.onboarding_presentation.personalInformation.age.AgeItem
-import com.mati.onboarding_presentation.personalInformation.gemder.GenderItem
-import com.mati.onboarding_presentation.personalInformation.height.HeightItem
-import com.mati.onboarding_presentation.personalInformation.weight.WeightItem
 import kotlinx.coroutines.delay
 
 @Composable
-fun PersonalInformation(
-    onClick: () -> Unit
-) {
+fun FitnessGoals() {
 
     var startAnimation by remember {
         mutableStateOf(false)
@@ -94,7 +87,7 @@ fun PersonalInformation(
                     contentScale = ContentScale.Crop
                 )
                 Text(
-                    text = stringResource(id = R.string.personal_information),
+                    text = stringResource(id = R.string.fitness_goals),
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily(Font(R.font.lufga_bold)),
@@ -127,15 +120,6 @@ fun PersonalInformation(
                     verticalArrangement = Arrangement.SpaceEvenly
                 ) {
 
-                    AgeItem()
-
-                    HeightItem()
-
-                    WeightItem()
-
-                    GenderItem()
-
-                    ActivityItem()
 
                 }
             }
@@ -152,7 +136,7 @@ fun PersonalInformation(
                         .fillMaxSize()
                         .padding(12.dp),
                     contentScale = ContentScale.FillBounds,
-                    painter = painterResource(id = R.drawable.personal),
+                    painter = painterResource(id = R.drawable.goals),
                     colorFilter = ColorFilter.tint(Color.White),
                     contentDescription = ""
                 )
@@ -160,8 +144,8 @@ fun PersonalInformation(
         }
 
         ActionButton(
-            text = stringResource(id = R.string.next),
-            onClick = { onClick() },
+            text = stringResource(id = R.string.complete),
+            onClick = {},
             textStyle = TextStyle(
                 fontFamily = FontFamily(Font(R.font.eriega)),
             ),

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mati.onboarding_presentation.fitnessGoals.FitnessGoals
 import com.mati.onboarding_presentation.personalInformation.PersonalInformation
 import com.mati.onboarding_presentation.welcome.WelcomeScreen
 
@@ -26,7 +27,15 @@ fun Navigation() {
         composable(
             NavigationItems.PersonalInformation.route,
         ) {
-            PersonalInformation()
+            PersonalInformation() {
+                navHostController.navigate(NavigationItems.FitnessGoals.route)
+            }
+        }
+
+        composable(
+            NavigationItems.FitnessGoals.route,
+        ) {
+            FitnessGoals()
         }
 
     }
