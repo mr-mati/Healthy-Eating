@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mati.HealthyEating.navigation.Navigation
 import com.mati.HealthyEating.ui.theme.HealthyEatingTheme
 import com.mati.onboarding_presentation.welcome.WelcomeScreen
 
@@ -23,14 +24,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             HealthyEatingTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    WelcomeScreen(
-                        modifier = Modifier
-                            .padding(top = innerPadding.calculateTopPadding())
-                            .fillMaxWidth()
-                            .height(100.dp)
-                    )
-                }
+                Navigation()
+                /*Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
+                }*/
             }
         }
     }
