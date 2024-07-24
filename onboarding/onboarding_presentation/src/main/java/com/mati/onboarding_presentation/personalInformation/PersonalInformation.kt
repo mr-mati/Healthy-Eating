@@ -44,12 +44,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mati.HealthyEating.R
-import com.mati.onboarding_presentation.activity.ActivityItem
-import com.mati.onboarding_presentation.age.AgeItem
+import com.mati.onboarding_presentation.personalInformation.activity.ActivityItem
+import com.mati.onboarding_presentation.personalInformation.age.AgeItem
 import com.mati.onboarding_presentation.components.ActionButton
-import com.mati.onboarding_presentation.gemder.GenderItem
-import com.mati.onboarding_presentation.height.HeightItem
-import com.mati.onboarding_presentation.weight.WeightItem
+import com.mati.onboarding_presentation.personalInformation.gemder.GenderItem
+import com.mati.onboarding_presentation.personalInformation.height.HeightItem
+import com.mati.onboarding_presentation.personalInformation.weight.WeightItem
 import kotlinx.coroutines.delay
 
 @Composable

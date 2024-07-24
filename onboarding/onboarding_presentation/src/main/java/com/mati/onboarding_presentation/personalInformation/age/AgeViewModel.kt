@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.weight
+package com.mati.onboarding_presentation.personalInformation.age
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,17 +11,17 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class WeightViewModel @Inject constructor(): ViewModel() {
+class AgeViewModel @Inject constructor(): ViewModel() {
 
-    var weight by mutableStateOf("80.0")
+    var age by mutableStateOf("20")
         private set
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    fun onWeightEnter(weight: String) {
-        if(weight.length <= 5) {
-            this.weight = weight
+    fun onAgeEnter(age: String) {
+        if(age.length <= 3) {
+            this.age = age
         }
     }
 

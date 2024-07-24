@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.gemder
+package com.mati.onboarding_presentation.personalInformation.gemder
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

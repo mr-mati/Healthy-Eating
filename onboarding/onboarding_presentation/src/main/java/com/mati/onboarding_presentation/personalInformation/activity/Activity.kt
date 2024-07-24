@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.activity
+package com.mati.onboarding_presentation.personalInformation.activity
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

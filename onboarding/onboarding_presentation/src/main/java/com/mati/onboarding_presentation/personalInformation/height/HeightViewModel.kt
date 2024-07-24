@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.age
+package com.mati.onboarding_presentation.personalInformation.height
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,21 +11,22 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class AgeViewModel @Inject constructor(): ViewModel() {
+class HeightViewModel @Inject constructor(): ViewModel() {
 
-    var age by mutableStateOf("20")
+    var height by mutableStateOf("180")
         private set
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    fun onAgeEnter(age: String) {
-        if(age.length <= 3) {
-            this.age = age
+    fun onHeightEnter(height: String) {
+        if(height.length <= 3) {
+            this.height = height
         }
     }
 
     fun onNextClick() {
 
     }
+
 }

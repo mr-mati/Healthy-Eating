@@ -1,10 +1,9 @@
-package com.mati.onboarding_presentation.gemder
+package com.mati.onboarding_presentation.personalInformation.weight
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.mati.core.domain.model.Gender
 import com.mati.core.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -12,16 +11,21 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class GenderViewModel @Inject constructor() : ViewModel() {
+class WeightViewModel @Inject constructor(): ViewModel() {
 
-    var selectedGender by mutableStateOf<Gender>(Gender.Male)
+    var weight by mutableStateOf("80.0")
         private set
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    fun onGenderClick(gender: Gender) {
-        selectedGender = gender
+    fun onWeightEnter(weight: String) {
+        if(weight.length <= 5) {
+            this.weight = weight
+        }
     }
 
+    fun onNextClick() {
+
+    }
 }

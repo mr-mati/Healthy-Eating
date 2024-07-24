@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.age
+package com.mati.onboarding_presentation.personalInformation.age
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.height
+package com.mati.onboarding_presentation.personalInformation.height
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
