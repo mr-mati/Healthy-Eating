@@ -1,5 +1,7 @@
 package com.mati.onboarding_presentation.welcome
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,13 +18,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -31,9 +40,25 @@ import androidx.compose.ui.unit.sp
 import com.mati.HealthyEating.R
 import com.mati.onboarding_presentation.components.ActionButton
 import com.mati.onboarding_presentation.components.WelcomeImage
+import kotlinx.coroutines.delay
 
 @Composable
 fun WelcomeScreen(modifier: Modifier = Modifier) {
+
+    var startAnimation by remember {
+        mutableStateOf(false)
+    }
+
+    LaunchedEffect(Unit) {
+        delay(2000)
+        startAnimation = true
+    }
+
+    val alpha by animateFloatAsState(
+        targetValue = if (startAnimation) 1f else 0f,
+        animationSpec = tween(1000), label = ""
+    )
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -56,10 +81,11 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
                     text = "Welcome!",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily(Font(R.font.lufga_bold)),
                     fontSize = 36.sp,
                     modifier = Modifier
                         .align(Alignment.Center)
-                        .offset(y = (-64).dp),
+                        .offset(y = (-120).dp),
                 )
             }
         }
@@ -87,8 +113,11 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
                 .offset(y = (100).dp),
         ) {
             Text(
+                modifier = Modifier
+                    .alpha(alpha),
                 text = stringResource(id = R.string.hello),
                 textAlign = TextAlign.Start,
+                fontFamily = FontFamily(Font(R.font.eriega)),
                 color = Color.Black,
                 style = TextStyle(
                     fontFamily = FontFamily.Default,
@@ -98,14 +127,16 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
             )
             Text(
                 modifier = Modifier
+                    .alpha(alpha)
                     .padding(top = 12.dp),
                 text = stringResource(id = R.string.welcome_text),
                 textAlign = TextAlign.Start,
+                fontFamily = FontFamily(Font(R.font.eriega)),
                 color = Color.Gray,
                 style = TextStyle(
                     fontFamily = FontFamily.Default,
                     fontWeight = FontWeight.Normal,
-                    fontSize = 22.sp
+                    fontSize = 18.sp
                 ),
             )
         }
@@ -113,10 +144,14 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
         ActionButton(
             text = stringResource(id = R.string.welcome_next),
             onClick = { },
+            textStyle = TextStyle(
+                fontFamily = FontFamily(Font(R.font.eriega)),
+            ),
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
-                .offset(y = (-64).dp),
+                .offset(y = (-26).dp)
+                .alpha(alpha),
         )
 
     }
