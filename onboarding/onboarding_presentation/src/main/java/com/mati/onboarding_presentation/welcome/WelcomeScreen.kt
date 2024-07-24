@@ -91,22 +91,30 @@ fun WelcomeScreen(
                 )
             }
         }
-        Card(
+
+        Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(700.dp)
-                .align(Alignment.BottomCenter),
-            shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
+                .fillMaxSize()
+                .padding(top = 250.dp)
         ) {
 
-        }
+            Card(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .align(Alignment.BottomCenter),
+                shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
+            ) {
 
-        WelcomeImage(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .size(300.dp)
-        )
+            }
+
+            WelcomeImage(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .size(300.dp)
+            )
+
+        }
 
         Column(
             modifier = Modifier

@@ -103,52 +103,57 @@ fun PersonalInformation() {
                 )
             }
         }
-
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(750.dp)
-                .align(Alignment.BottomCenter),
-            shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
-        ) {
-
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .alpha(alpha)
-                    .padding(bottom = 64.dp, start = 16.dp, end = 16.dp),
-                verticalArrangement = Arrangement.SpaceEvenly
-            ) {
-
-                AgeItem()
-
-                HeightItem()
-
-                WeightItem()
-
-                GenderItem()
-
-                ActivityItem()
-
-            }
-        }
-
         Box(
             modifier = Modifier
-                .size(100.dp)
-                .offset(y = -250.dp)
-                .align(Alignment.Center)
-                .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.onPrimary)
+                .fillMaxSize()
+                .padding(top = 100.dp)
         ) {
-            Image(
-                modifier = Modifier.fillMaxSize()
-                    .padding(12.dp),
-                contentScale = ContentScale.FillBounds,
-                painter = painterResource(id = R.drawable.persona),
-                contentDescription = ""
-            )
+            Card(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .align(Alignment.BottomCenter)
+                    .padding(top = 50.dp),
+                shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
+            ) {
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .alpha(alpha)
+                        .padding(bottom = 64.dp, start = 16.dp, end = 16.dp),
+                    verticalArrangement = Arrangement.SpaceEvenly
+                ) {
+
+                    AgeItem()
+
+                    HeightItem()
+
+                    WeightItem()
+
+                    GenderItem()
+
+                    ActivityItem()
+
+                }
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(100.dp)
+                    .align(Alignment.TopCenter)
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.onPrimary)
+            ) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(12.dp),
+                    contentScale = ContentScale.FillBounds,
+                    painter = painterResource(id = R.drawable.persona),
+                    contentDescription = ""
+                )
+            }
         }
 
         ActionButton(

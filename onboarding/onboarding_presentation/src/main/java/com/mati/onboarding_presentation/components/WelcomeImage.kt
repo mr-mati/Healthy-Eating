@@ -36,7 +36,7 @@ fun WelcomeImage(modifier: Modifier = Modifier) {
     }
 
     val offsetY by animateDpAsState(
-        targetValue = if (startAnimationOffsetY) 0.dp else (-100).dp,
+        targetValue = if (startAnimationOffsetY) 0.dp else (-150).dp,
         animationSpec = tween(1000)
     )
 
