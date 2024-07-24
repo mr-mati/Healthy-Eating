@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mati.onboarding_presentation.personalInformation.PersonalInformation
 import com.mati.onboarding_presentation.welcome.WelcomeScreen
 
 @Composable
@@ -17,8 +18,17 @@ fun Navigation() {
         composable(
             NavigationItems.Welcome.route,
         ) {
-            WelcomeScreen()
+            WelcomeScreen() {
+                navHostController.navigate(NavigationItems.PersonalInformation.route)
+            }
         }
+
+        composable(
+            NavigationItems.PersonalInformation.route,
+        ) {
+            PersonalInformation()
+        }
+
     }
 
 }

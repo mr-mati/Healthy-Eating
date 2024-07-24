@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.age
+package com.mati.onboarding_presentation.weight
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -23,9 +23,7 @@ import com.mati.HealthyEating.R
 import com.mati.onboarding_presentation.components.UnitTextField
 
 @Composable
-fun AgeItem(
-    viewModel: AgeViewModel = hiltViewModel()
-) {
+fun WeightItem(viewModel: WeightViewModel = hiltViewModel()) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -34,7 +32,7 @@ fun AgeItem(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = stringResource(id = R.string.your_age),
+            text = stringResource(id = R.string.your_weight),
             textAlign = TextAlign.Start,
             fontFamily = FontFamily(Font(R.font.eriega)),
             color = Color.Black,
@@ -45,9 +43,9 @@ fun AgeItem(
             ),
         )
         UnitTextField(
-            value = viewModel.age,
-            onValueChange = viewModel::onAgeEnter,
-            unit = stringResource(id = R.string.years),
+            value = viewModel.weight,
+            onValueChange = viewModel::onWeightEnter,
+            unit = stringResource(id = R.string.kg),
             textStyle = TextStyle(
                 fontSize = 30.sp,
                 color = MaterialTheme.colorScheme.primary,

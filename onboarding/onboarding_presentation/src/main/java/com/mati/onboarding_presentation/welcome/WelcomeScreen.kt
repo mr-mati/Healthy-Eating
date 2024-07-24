@@ -43,7 +43,9 @@ import com.mati.onboarding_presentation.components.WelcomeImage
 import kotlinx.coroutines.delay
 
 @Composable
-fun WelcomeScreen(modifier: Modifier = Modifier) {
+fun WelcomeScreen(
+    onClick: () -> Unit
+) {
 
     var startAnimation by remember {
         mutableStateOf(false)
@@ -143,7 +145,7 @@ fun WelcomeScreen(modifier: Modifier = Modifier) {
 
         ActionButton(
             text = stringResource(id = R.string.welcome_next),
-            onClick = { },
+            onClick = { onClick() },
             textStyle = TextStyle(
                 fontFamily = FontFamily(Font(R.font.eriega)),
             ),

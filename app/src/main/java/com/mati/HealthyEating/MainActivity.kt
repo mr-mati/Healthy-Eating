@@ -17,7 +17,9 @@ import androidx.compose.ui.unit.dp
 import com.mati.HealthyEating.navigation.Navigation
 import com.mati.HealthyEating.ui.theme.HealthyEatingTheme
 import com.mati.onboarding_presentation.welcome.WelcomeScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,5 +46,5 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    WelcomeScreen()
+
 }

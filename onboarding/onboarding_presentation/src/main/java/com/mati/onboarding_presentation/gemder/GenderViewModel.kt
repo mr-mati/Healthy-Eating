@@ -1,4 +1,4 @@
-package com.mati.onboarding_presentation.personalInformation
+package com.mati.onboarding_presentation.gemder
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

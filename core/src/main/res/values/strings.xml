@@ -11,11 +11,22 @@
 
     <string name="next">Next</string>
 
-    <string name="gender">Gender : </string>
+    <string name="gender">your gender : </string>
     <string name="male">Male</string>
     <string name="female">Female</string>
 
-    <string name="age">Age : </string>
+    <string name="your_age">your age : </string>
     <string name="years">years</string>
+
+    <string name="your_height">your height : </string>
+    <string name="cm">cm</string>
+
+    <string name="your_weight">your weight : </string>
+    <string name="kg">kg</string>
+
+    <string name="whats_your_activity_level">What\'s your activity level?</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
 
 </resources>

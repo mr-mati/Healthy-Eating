@@ -3,5 +3,5 @@ package com.mati.HealthyEating.navigation
 sealed class NavigationItems(val route:String){
 
     object Welcome : NavigationItems("welcome")
-    object About : NavigationItems("about")
+    object PersonalInformation : NavigationItems("personalInformation")
 }
