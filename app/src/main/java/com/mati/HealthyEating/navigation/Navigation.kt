@@ -1,5 +1,6 @@
 package com.mati.HealthyEating.navigation
 
+import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,7 +10,7 @@ import com.mati.onboarding_presentation.personalInformation.PersonalInformation
 import com.mati.onboarding_presentation.welcome.WelcomeScreen
 
 @Composable
-fun Navigation() {
+fun Navigation(scaffoldState: ScaffoldState) {
     val navHostController = rememberNavController()
 
     NavHost(
@@ -27,9 +28,9 @@ fun Navigation() {
         composable(
             NavigationItems.PersonalInformation.route,
         ) {
-            PersonalInformation() {
+            PersonalInformation(scaffoldState = scaffoldState, onNextClick = {
                 navHostController.navigate(NavigationItems.FitnessGoals.route)
-            }
+            })
         }
 
         composable(
