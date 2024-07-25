@@ -28,10 +28,11 @@ import com.mati.core.util.UiEvent
 import com.mati.coreui.LocalSpacing
 import com.mati.onboarding_presentation.components.SelectableButton
 import com.mati.onboarding_presentation.components.UnitTextField
+import com.mati.onboarding_presentation.personalInformation.PersonalViewModel
 
 @Composable
 fun GenderItem(
-    viewModel: GenderViewModel = hiltViewModel()
+    viewModel: PersonalViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
 

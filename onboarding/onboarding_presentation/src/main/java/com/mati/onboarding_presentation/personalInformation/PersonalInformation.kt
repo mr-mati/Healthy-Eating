@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ScaffoldState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -35,6 +36,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -43,7 +45,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.mati.HealthyEating.R
+import com.mati.core.util.UiEvent
 import com.mati.onboarding_presentation.components.ActionButton
 import com.mati.onboarding_presentation.personalInformation.activity.ActivityItem
 import com.mati.onboarding_presentation.personalInformation.age.AgeItem
@@ -54,8 +58,24 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun PersonalInformation(
-    onClick: () -> Unit
+    scaffoldState: ScaffoldState,
+    onNextClick: () -> Unit,
+    viewModel: PersonalViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+    LaunchedEffect(key1 = true) {
+        viewModel.uiEvent.collect { event ->
+            when (event) {
+                is UiEvent.Success -> onNextClick()
+                is UiEvent.ShowSnackbar -> {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        message = event.message.asString(context)
+                    )
+                }
+                else -> Unit
+            }
+        }
+    }
 
     var startAnimation by remember {
         mutableStateOf(false)
@@ -161,7 +181,7 @@ fun PersonalInformation(
 
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = { onClick() },
+            onClick = { viewModel.onNextClick() },
             textStyle = TextStyle(
                 fontFamily = FontFamily(Font(R.font.eriega)),
             ),

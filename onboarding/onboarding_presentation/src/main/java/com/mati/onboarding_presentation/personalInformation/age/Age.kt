@@ -21,10 +21,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.mati.HealthyEating.R
 import com.mati.onboarding_presentation.components.UnitTextField
+import com.mati.onboarding_presentation.personalInformation.PersonalViewModel
 
 @Composable
 fun AgeItem(
-    viewModel: AgeViewModel = hiltViewModel()
+    viewModel: PersonalViewModel = hiltViewModel()
 ) {
     Row(
         modifier = Modifier
