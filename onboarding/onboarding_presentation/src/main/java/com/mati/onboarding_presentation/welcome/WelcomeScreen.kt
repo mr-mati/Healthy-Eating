@@ -95,74 +95,72 @@ fun WelcomeScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 250.dp)
+                .padding(top = 100.dp)
         ) {
-
             Card(
                 modifier = Modifier
                     .fillMaxSize()
-                    .align(Alignment.BottomCenter),
+                    .align(Alignment.BottomCenter)
+                    .padding(top = 160.dp),
                 shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White)
             ) {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .padding(16.dp)
+                            .offset(y = (100).dp),
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .alpha(alpha),
+                            text = stringResource(id = R.string.hello),
+                            textAlign = TextAlign.Start,
+                            fontFamily = FontFamily(Font(R.font.eriega)),
+                            color = Color.Black,
+                            style = TextStyle(
+                                fontFamily = FontFamily.Default,
+                                fontWeight = FontWeight.Black,
+                                fontSize = 30.sp
+                            ),
+                        )
+                        Text(
+                            modifier = Modifier
+                                .alpha(alpha)
+                                .padding(top = 12.dp),
+                            text = stringResource(id = R.string.welcome_text),
+                            textAlign = TextAlign.Start,
+                            fontFamily = FontFamily(Font(R.font.eriega)),
+                            color = Color.Gray,
+                            style = TextStyle(
+                                fontFamily = FontFamily.Default,
+                                fontWeight = FontWeight.Normal,
+                                fontSize = 18.sp
+                            ),
+                        )
+                    }
 
+                    ActionButton(
+                        text = stringResource(id = R.string.welcome_next),
+                        onClick = { onClick() },
+                        textStyle = TextStyle(
+                            fontFamily = FontFamily(Font(R.font.eriega)),
+                        ),
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(16.dp)
+                            .offset(y = (-26).dp)
+                            .alpha(alpha),
+                    )
+                }
             }
 
             WelcomeImage(
                 modifier = Modifier
-                    .align(Alignment.Center)
+                    .align(Alignment.TopCenter)
                     .size(300.dp)
             )
-
         }
-
-        Column(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(16.dp)
-                .offset(y = (100).dp),
-        ) {
-            Text(
-                modifier = Modifier
-                    .alpha(alpha),
-                text = stringResource(id = R.string.hello),
-                textAlign = TextAlign.Start,
-                fontFamily = FontFamily(Font(R.font.eriega)),
-                color = Color.Black,
-                style = TextStyle(
-                    fontFamily = FontFamily.Default,
-                    fontWeight = FontWeight.Black,
-                    fontSize = 30.sp
-                ),
-            )
-            Text(
-                modifier = Modifier
-                    .alpha(alpha)
-                    .padding(top = 12.dp),
-                text = stringResource(id = R.string.welcome_text),
-                textAlign = TextAlign.Start,
-                fontFamily = FontFamily(Font(R.font.eriega)),
-                color = Color.Gray,
-                style = TextStyle(
-                    fontFamily = FontFamily.Default,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 18.sp
-                ),
-            )
-        }
-
-        ActionButton(
-            text = stringResource(id = R.string.welcome_next),
-            onClick = { onClick() },
-            textStyle = TextStyle(
-                fontFamily = FontFamily(Font(R.font.eriega)),
-            ),
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp)
-                .offset(y = (-26).dp)
-                .alpha(alpha),
-        )
-
     }
 }

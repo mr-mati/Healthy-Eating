@@ -25,33 +25,37 @@ fun WelcomeImage(modifier: Modifier = Modifier) {
     var startAnimationAlpha by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
-        delay(300)
-        startAnimationOffsetY = true
+        delay(100)
         startAnimationAlpha = true
     }
 
     LaunchedEffect(Unit) {
-        delay(1000)
+        delay(500)
+        startAnimationOffsetY = true
+    }
+
+    LaunchedEffect(Unit) {
+        delay(1500)
         startAnimationOffsetY = false
     }
 
     val offsetY by animateDpAsState(
-        targetValue = if (startAnimationOffsetY) 0.dp else (-150).dp,
+        targetValue = if (startAnimationOffsetY) 100.dp else (0).dp,
         animationSpec = tween(1000)
     )
 
     val alpha by animateFloatAsState(
         targetValue = if (startAnimationAlpha) 1f else 0f,
-        animationSpec = tween(1000)
+        animationSpec = tween(500)
     )
 
     Image(
-        painter = painterResource(id = R.drawable.welcome),
-        contentDescription = null,
         modifier = modifier
-            .offset(y = offsetY)
             .alpha(alpha)
             .offset(y = offsetY)
+            .offset(y = offsetY),
+        painter = painterResource(id = R.drawable.welcome),
+        contentDescription = null,
     )
 
 }
