@@ -93,7 +93,9 @@ dependencies {
     implementation(project(Modules.coreUi))
     implementation(project(Modules.onboardingPresentation))
     implementation(project(Modules.onboardingDomain))
-
+    implementation(project(Modules.trackerData))
+    implementation(project(Modules.trackerDomain))
+    implementation(project(Modules.trackerPresentation))
 }
 
 kapt {

@@ -9,6 +9,7 @@ import com.mati.HealthyEating.ui.SplashScreen.SplashScreen
 import com.mati.onboarding_presentation.fitnessGoals.FitnessGoals
 import com.mati.onboarding_presentation.personalInformation.PersonalInformation
 import com.mati.onboarding_presentation.welcome.WelcomeScreen
+import com.mati.tracker_presentation.tracker_main.TrackerScreen
 
 @Composable
 fun Navigation(scaffoldState: ScaffoldState) {
@@ -50,7 +51,15 @@ fun Navigation(scaffoldState: ScaffoldState) {
         composable(
             NavigationItems.FitnessGoals.route,
         ) {
-            FitnessGoals()
+            FitnessGoals() {
+                navHostController.navigate(NavigationItems.TrackerScreen.route)
+            }
+        }
+
+        composable(
+            NavigationItems.TrackerScreen.route,
+        ) {
+            TrackerScreen()
         }
 
     }

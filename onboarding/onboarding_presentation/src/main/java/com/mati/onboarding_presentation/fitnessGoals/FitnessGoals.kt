@@ -54,7 +54,9 @@ import com.mati.onboarding_presentation.fitnessGoals.Goals.GoalsItem
 import kotlinx.coroutines.delay
 
 @Composable
-fun FitnessGoals() {
+fun FitnessGoals(
+    onNextClick: () -> Unit,
+) {
 
     var startAnimation by remember {
         mutableStateOf(false)
@@ -232,7 +234,7 @@ fun FitnessGoals() {
 
         ActionButton(
             text = stringResource(id = R.string.complete),
-            onClick = {},
+            onClick = { onNextClick() },
             textStyle = TextStyle(
                 fontFamily = FontFamily(Font(R.font.eriega)),
             ),

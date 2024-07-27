@@ -45,4 +45,10 @@
     <string name="error_height_cant_be_empty">The height can\'t be empty</string>
     <string name="error_weight_cant_be_empty">The weight can\'t be empty</string>
 
+    <string name="previous_day">Previous day</string>
+    <string name="next_day">Next day</string>
+
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="today">Today</string>
 </resources>

@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mati.HealthyEating.R
+import com.mati.HealthyEating.ui.theme.gray
 import kotlinx.coroutines.delay
 
 @Composable
@@ -68,8 +69,8 @@ fun SplashScreen(onNextPage: () -> Unit) {
                 .offset(y = -30.dp)
                 .align(Alignment.BottomCenter),
             style = TextStyle(
-                color = Color.Gray,
-                fontSize = 26.sp,
+                color = gray,
+                fontSize = 18.sp,
                 textAlign = TextAlign.Center,
                 fontFamily = FontFamily(Font(R.font.eriega)),
             )
