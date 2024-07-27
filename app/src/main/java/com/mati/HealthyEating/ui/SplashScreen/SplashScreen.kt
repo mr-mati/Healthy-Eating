@@ -65,7 +65,7 @@ fun SplashScreen(onNextPage: () -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
-                .offset(y = -60.dp)
+                .offset(y = -30.dp)
                 .align(Alignment.BottomCenter),
             style = TextStyle(
                 color = Color.Gray,

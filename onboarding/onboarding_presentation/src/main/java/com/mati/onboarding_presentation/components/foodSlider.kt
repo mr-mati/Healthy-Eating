@@ -11,7 +11,6 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,7 +24,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mati.HealthyEating.R
-import kotlinx.coroutines.delay
 
 
 @Composable
@@ -34,14 +32,7 @@ fun FoodSlider() {
     val foodImage: Painter = painterResource(id = R.drawable.target)
 
     var startAnimation by remember {
-        mutableStateOf(false)
-    }
-
-    if (startAnimation) {
-        LaunchedEffect(Unit) {
-            delay(500)
-            startAnimation = false
-        }
+        mutableStateOf(true)
     }
 
     Box(
@@ -53,9 +44,6 @@ fun FoodSlider() {
             value = sliderPosition,
             onValueChange = {
                 sliderPosition = it
-                if (!startAnimation) {
-                    startAnimation = true
-                }
             },
             valueRange = 0f..100f,
             colors = SliderDefaults.colors(
@@ -79,10 +67,6 @@ fun FoodSlider() {
                     contentScale = ContentScale.FillBounds,
                     modifier = Modifier.size(38.dp)
                 )
-                LaunchedEffect(Unit) {
-                    delay(2000)
-                    startAnimation = false
-                }
             }
         }
 
