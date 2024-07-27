@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mati.HealthyEating.ui.SplashScreen.SplashScreen
 import com.mati.onboarding_presentation.fitnessGoals.FitnessGoals
 import com.mati.onboarding_presentation.personalInformation.PersonalInformation
 import com.mati.onboarding_presentation.welcome.WelcomeScreen
@@ -15,8 +16,21 @@ fun Navigation(scaffoldState: ScaffoldState) {
 
     NavHost(
         navController = navHostController,
-        startDestination = NavigationItems.Welcome.route
+        startDestination = NavigationItems.SplashScreen.route
     ) {
+
+        composable(
+            NavigationItems.SplashScreen.route,
+        ) {
+            SplashScreen() {
+                navHostController.navigate(NavigationItems.Welcome.route) {
+                    popUpTo(NavigationItems.SplashScreen.route) {
+                        inclusive = true
+                    }
+                }
+            }
+        }
+
         composable(
             NavigationItems.Welcome.route,
         ) {
