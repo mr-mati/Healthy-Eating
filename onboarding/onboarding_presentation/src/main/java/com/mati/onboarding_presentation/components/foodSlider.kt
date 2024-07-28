@@ -51,7 +51,7 @@ fun FoodSlider(
             onValueChange = onValueChange,
             valueRange = 0f..100f,
             colors = SliderDefaults.colors(
-                thumbColor = Color.Transparent, // Transparent to hide default thumb
+                thumbColor = Color.Transparent,
                 activeTrackColor = MaterialTheme.colorScheme.primary,
                 inactiveTrackColor = Color.LightGray
             ),
