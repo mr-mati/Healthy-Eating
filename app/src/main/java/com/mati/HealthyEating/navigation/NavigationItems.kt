@@ -6,4 +6,5 @@ sealed class NavigationItems(val route:String){
     object PersonalInformation : NavigationItems("personalInformation")
     object FitnessGoals : NavigationItems("fitnessGoals")
     object TrackerScreen : NavigationItems("trackerScreen")
+    object SearchScreen : NavigationItems("searchScreen")
 }
