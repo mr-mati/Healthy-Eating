@@ -10,7 +10,6 @@ import com.mati.core.use_case.FilterOutDigits
 import com.mati.core.util.UiEvent
 import com.mati.core.util.UiText
 import com.mati.tracker_domain.use_case.TrackerUseCases
-import com.mati.tracker_presentation.search.TrackableFoodUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

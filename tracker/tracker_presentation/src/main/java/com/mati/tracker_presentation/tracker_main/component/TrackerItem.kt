@@ -3,9 +3,9 @@ package com.mati.tracker_presentation.tracker_main.component
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,8 +27,7 @@ fun TrackerItem(
     brush: Brush
 ) {
 
-    val progress = (data / data) * 100f
-
+    val progress = (data / maxData) * 100
     Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -36,7 +35,7 @@ fun TrackerItem(
             modifier = Modifier
                 .size(60.dp)
                 .padding(start = 16.dp),
-            progress = progress - maxData,
+            progress = progress,
             calories = progress,
             totalCalories = data.toFloat(),
             color = Color(0xFFDBDBDB),
@@ -49,14 +48,27 @@ fun TrackerItem(
                 .padding(start = 8.dp, end = 8.dp),
             verticalArrangement = Arrangement.Center,
         ) {
-            Text(
-                text = String.format("%.0f", data),
-                style = TextStyle(
-                    //fontWeight = FontWeight.Bold,
-                    fontSize = 22.sp,
-                    textAlign = TextAlign.Center
+            Row(
+                verticalAlignment = Alignment.Bottom
+            ) {
+                Text(
+                    text = String.format("%.0f", data),
+                    style = TextStyle(
+                        //fontWeight = FontWeight.Bold,
+                        fontSize = 22.sp,
+                        textAlign = TextAlign.Center
+                    )
                 )
-            )
+                Text(
+                    text = String.format("/%.0f", maxData),
+                    style = TextStyle(
+                        color = Color.LightGray,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 8.sp,
+                        textAlign = TextAlign.Center
+                    )
+                )
+            }
             Text(
                 text = "$title",
                 style = TextStyle(

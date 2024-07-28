@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,6 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.mati.HealthyEating.R
 import com.mati.onboarding_presentation.components.ActionButton
 import com.mati.onboarding_presentation.components.FoodSlider
@@ -55,6 +55,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun FitnessGoals(
+    viewModel: FitnessGoalViewModel = hiltViewModel(),
     onNextClick: () -> Unit,
 ) {
 
@@ -163,7 +164,10 @@ fun FitnessGoals(
                             ),
                         )
                         Spacer(modifier = Modifier.height(16.dp))
-                        FoodSlider()
+                        FoodSlider(
+                            viewModel.carbsRatio,
+                            viewModel::onCarbsRatio
+                        )
                     }
 
                     Column(
@@ -185,7 +189,10 @@ fun FitnessGoals(
                             ),
                         )
                         Spacer(modifier = Modifier.height(16.dp))
-                        FoodSlider()
+                        FoodSlider(
+                            viewModel.proteinRatio,
+                            viewModel::onProteinRatio
+                        )
                     }
 
                     Column(
@@ -207,7 +214,10 @@ fun FitnessGoals(
                             ),
                         )
                         Spacer(modifier = Modifier.height(16.dp))
-                        FoodSlider()
+                        FoodSlider(
+                            viewModel.fatRatio,
+                            viewModel::onFatRatio
+                        )
                     }
 
                 }
@@ -234,7 +244,10 @@ fun FitnessGoals(
 
         ActionButton(
             text = stringResource(id = R.string.complete),
-            onClick = { onNextClick() },
+            onClick = {
+                viewModel.onNextClick()
+                onNextClick()
+            },
             textStyle = TextStyle(
                 fontFamily = FontFamily(Font(R.font.eriega)),
             ),

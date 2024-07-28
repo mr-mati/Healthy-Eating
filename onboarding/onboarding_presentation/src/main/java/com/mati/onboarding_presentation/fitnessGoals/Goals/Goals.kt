@@ -26,10 +26,11 @@ import com.mati.HealthyEating.R
 import com.mati.core.domain.model.GoalType
 import com.mati.coreui.LocalSpacing
 import com.mati.onboarding_presentation.components.SelectableButton
+import com.mati.onboarding_presentation.fitnessGoals.FitnessGoalViewModel
 
 @Composable
 fun GoalsItem(
-    viewModel: GoalViewModel = hiltViewModel()
+    viewModel: FitnessGoalViewModel = hiltViewModel()
 ) {
     val spacing = LocalSpacing.current
 

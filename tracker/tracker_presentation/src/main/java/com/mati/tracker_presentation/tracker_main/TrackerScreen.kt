@@ -9,25 +9,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -41,12 +33,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.annotation.ExperimentalCoilApi
 import com.mati.HealthyEating.R
+import com.mati.coreui.LocalSpacing
 import com.mati.tracker_presentation.component.CircularProgress
 import com.mati.tracker_presentation.component.DaySelector
 import com.mati.tracker_presentation.tracker_main.Meal.MealItem
+import com.mati.tracker_presentation.tracker_main.component.FoodItem
 import com.mati.tracker_presentation.tracker_main.component.TrackerItem
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun TrackerScreen(
     onNavigateToSearch: (Int, Int, Int) -> Unit,
@@ -55,10 +51,14 @@ fun TrackerScreen(
 
     val response = viewModel.state
     val context = LocalContext.current
+    val spacing = LocalSpacing.current
+
+    val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(scrollState)
             .padding(top = 32.dp)
             .background(Color(0xFFF5F5F5))
     ) {
@@ -92,11 +92,13 @@ fun TrackerScreen(
             ) {
                 val brush = Brush.horizontalGradient(listOf(Color(0xFF71C4C4), Color(0xFFEF9A9A)))
                 if (response.caloriesGoal != 0) {
+                    val progress =
+                        (response.totalCalories.toDouble() / response.caloriesGoal.toDouble()) * 100
                     CircularProgress(
                         modifier = Modifier
                             .size(180.dp)
                             .padding(start = 16.dp),
-                        progress = (response.totalCalories.toFloat() / response.caloriesGoal.toFloat()) * 100f,
+                        progress = progress.toFloat(),
                         calories = response.totalCalories.toFloat(),
                         totalCalories = response.caloriesGoal.toFloat(),
                         color = Color(0xFFDBDBDB),
@@ -111,19 +113,19 @@ fun TrackerScreen(
                         TrackerItem(
                             "carbs",
                             response.totalCarbs.toFloat(),
-                            response.carbsGoal.toFloat(),
+                            response.carbsGoal.toFloat() / 100f,
                             brush
                         )
                         TrackerItem(
                             "protein",
                             response.totalProtein.toFloat(),
-                            response.proteinGoal.toFloat(),
+                            response.proteinGoal.toFloat() / 100f,
                             brush
                         )
                         TrackerItem(
                             "fat",
                             response.totalFat.toFloat(),
-                            response.fatGoal.toFloat(),
+                            response.fatGoal.toFloat() / 100f,
                             brush
                         )
                     }
@@ -157,17 +159,41 @@ fun TrackerScreen(
                 verticalArrangement = Arrangement.SpaceAround
             ) {
 
-                LazyColumn {
-                    itemsIndexed(response.meals) { index, item ->
-                        key(index) {
-                            MealItem(
-                                item.name.asString(context),
-                                item.drawableRes,
-                                item.carbs,
-                                item.protein,
-                                item.fat
-                            )
-                        }
+                Column(
+                    modifier = Modifier
+                        .padding(bottom = 4.dp, top = 8.dp)
+                ) {
+                    repeat(response.meals.size) { index ->
+                        MealItem(
+                            response.meals[index],
+                            response.meals[index].name.asString(context),
+                            response.meals[index].drawableRes,
+                            response.meals[index].carbs,
+                            response.meals[index].protein,
+                            response.meals[index].fat,
+                            onToggleClick = {
+                                viewModel.onEvent(TrackerEvent.OnToggleMealClick(response.meals[index]))
+                            },
+                            content = {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = spacing.spaceSmall)
+                                ) {
+                                    response.trackedFoods.forEach { food ->
+                                        FoodItem(
+                                            trackedFood = food,
+                                            onDeleteClick = {
+                                                viewModel.onEvent(
+                                                    TrackerEvent
+                                                        .OnDeleteTrackedFoodClick(food)
+                                                )
+                                            }
+                                        )
+                                    }
+                                }
+                            }
+                        )
                     }
                 }
             }
@@ -175,7 +201,7 @@ fun TrackerScreen(
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 32.dp, end = 32.dp),
+                .padding(start = 32.dp, end = 32.dp, bottom = 32.dp),
             onClick = {
                 onNavigateToSearch(
                     response.date.dayOfMonth,
