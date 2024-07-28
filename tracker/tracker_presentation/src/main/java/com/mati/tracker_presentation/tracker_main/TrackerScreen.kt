@@ -18,9 +18,16 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -42,7 +49,7 @@ import com.mati.tracker_presentation.tracker_main.component.TrackerItem
 
 @Composable
 fun TrackerScreen(
-    onNavigateToSearch: (String, Int, Int, Int) -> Unit,
+    onNavigateToSearch: (Int, Int, Int) -> Unit,
     viewModel: TrackerViewModel = hiltViewModel()
 ) {
 
@@ -171,7 +178,6 @@ fun TrackerScreen(
                 .padding(start = 32.dp, end = 32.dp),
             onClick = {
                 onNavigateToSearch(
-                    "Launch",
                     response.date.dayOfMonth,
                     response.date.monthValue,
                     response.date.year
@@ -182,7 +188,7 @@ fun TrackerScreen(
             Text(
                 modifier = Modifier
                     .padding(top = 8.dp, bottom = 8.dp),
-                text = "Add Breakfast",
+                text = "Add Meals",
                 textAlign = TextAlign.Center
             )
         }

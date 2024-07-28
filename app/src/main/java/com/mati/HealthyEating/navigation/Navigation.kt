@@ -13,10 +13,9 @@ import com.mati.core.domain.prefernces.Preferences
 import com.mati.onboarding_presentation.fitnessGoals.FitnessGoals
 import com.mati.onboarding_presentation.personalInformation.PersonalInformation
 import com.mati.onboarding_presentation.welcome.WelcomeScreen
+import com.mati.tracker_presentation.Meal.addMealsScreen.AddMealsScreen
 import com.mati.tracker_presentation.tracker_main.TrackerScreen
-import com.plcoding.tracker_presentation.search.SearchScreen
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Navigation(
     scaffoldState: ScaffoldState,
@@ -75,9 +74,9 @@ fun Navigation(
         composable(
             NavigationItems.TrackerScreen.route,
         ) {
-            TrackerScreen(onNavigateToSearch = { mealName, day, month, year ->
+            TrackerScreen(onNavigateToSearch = { day, month, year ->
                 navHostController.navigate(
-                    NavigationItems.SearchScreen.route + "/$mealName" +
+                    NavigationItems.SearchScreen.route +
                             "/$day" +
                             "/$month" +
                             "/$year"
@@ -86,11 +85,8 @@ fun Navigation(
         }
 
         composable(
-            route = NavigationItems.SearchScreen.route + "/{mealName}/{dayOfMonth}/{month}/{year}",
+            route = NavigationItems.SearchScreen.route + "/{dayOfMonth}/{month}/{year}",
             arguments = listOf(
-                navArgument("mealName") {
-                    type = NavType.StringType
-                },
                 navArgument("dayOfMonth") {
                     type = NavType.IntType
                 },
@@ -102,13 +98,11 @@ fun Navigation(
                 },
             )
         ) {
-            val mealName = it.arguments?.getString("mealName")!!
             val dayOfMonth = it.arguments?.getInt("dayOfMonth")!!
             val month = it.arguments?.getInt("month")!!
             val year = it.arguments?.getInt("year")!!
-            SearchScreen(
+            AddMealsScreen(
                 scaffoldState = scaffoldState,
-                mealName = mealName,
                 dayOfMonth = dayOfMonth,
                 month = month,
                 year = year,
