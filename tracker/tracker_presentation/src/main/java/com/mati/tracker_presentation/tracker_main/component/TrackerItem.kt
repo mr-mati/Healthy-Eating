@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,7 +27,7 @@ fun TrackerItem(
     brush: Brush
 ) {
 
-    val progress = (data / maxData) * 100f
+    val progress = (data / data) * 100f
 
     Row(
         verticalAlignment = Alignment.CenterVertically
@@ -35,7 +36,8 @@ fun TrackerItem(
             modifier = Modifier
                 .size(60.dp)
                 .padding(start = 16.dp),
-            progress = progress,
+            progress = progress - maxData,
+            calories = progress,
             totalCalories = data.toFloat(),
             color = Color(0xFFDBDBDB),
             selectColor = brush,
@@ -46,13 +48,13 @@ fun TrackerItem(
             modifier = Modifier
                 .padding(start = 8.dp, end = 8.dp),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "$data g",
+                text = String.format("%.0f", data),
                 style = TextStyle(
                     //fontWeight = FontWeight.Bold,
-                    fontSize = 22.sp
+                    fontSize = 22.sp,
+                    textAlign = TextAlign.Center
                 )
             )
             Text(
@@ -61,7 +63,7 @@ fun TrackerItem(
                     color = Color.LightGray,
                     fontWeight = FontWeight.Bold,
                     fontSize = 18.sp,
-                    textAlign = TextAlign.Start
+                    textAlign = TextAlign.Center
                 )
             )
         }
