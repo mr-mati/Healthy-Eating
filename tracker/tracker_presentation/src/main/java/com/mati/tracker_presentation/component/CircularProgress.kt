@@ -41,13 +41,14 @@ fun CircularProgress(
     LaunchedEffect(progress) {
         animatedProgress.animateTo(
             targetValue = if (progress > 0) {
-                progress / 50f
+                progress / 100f
             } else 0f,
             animationSpec = tween(
                 durationMillis = 1000
             )
         )
     }
+
 
     Box(
         contentAlignment = Alignment.Center,
@@ -83,16 +84,16 @@ fun CircularProgress(
         if (visibleNumber) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
-                    text = String.format("%.1f kcal", calories),
+                    text = String.format("%.0f kcal", calories),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.LightGray
+                    color = MaterialTheme.colors.onBackground
                 )
                 Text(
-                    text = String.format("%.1f kcal", totalCalories),
+                    text = String.format("%.0f kcal", totalCalories),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.onBackground
+                    color = Color.LightGray
                 )
                 Spacer(modifier = Modifier.height(4.dp))
             }
