@@ -1,9 +1,8 @@
 [versions]
 animation = "1.6.8"
 compiler = "1.5.14"
-composeCompailerVersion = "1.5.1"
 agp = "8.5.0"
-coilCompose = "2.5.0"
+coilCompose = "2.0.0"
 constraintlayoutCompose = "1.0.1"
 converterMoshi = "2.9.0"
 hiltNavigationCompose = "1.2.0"
@@ -23,7 +22,6 @@ navigationCompose = "2.7.7"
 retrofit = "2.11.0"
 room = "2.6.1"
 hilt = "2.50"
-material = "1.6.8"
 materialVersion = "1.12.0"
 
 

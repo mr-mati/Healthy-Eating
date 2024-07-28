@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 fun CircularProgress(
     modifier: Modifier = Modifier,
     progress: Float,
+    calories: Float,
     totalCalories: Float,
     color: Color,
     selectColor: Brush,
@@ -39,8 +40,12 @@ fun CircularProgress(
 
     LaunchedEffect(progress) {
         animatedProgress.animateTo(
-            targetValue = progress / 100f,
-            animationSpec = tween(durationMillis = 1000)
+            targetValue = if (progress > 0) {
+                progress / 50f
+            } else 0f,
+            animationSpec = tween(
+                durationMillis = 1000
+            )
         )
     }
 
@@ -78,7 +83,13 @@ fun CircularProgress(
         if (visibleNumber) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
-                    text = String.format("%.2f kcal", totalCalories * animatedProgress.value * 100),
+                    text = String.format("%.1f kcal", calories),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.LightGray
+                )
+                Text(
+                    text = String.format("%.1f kcal", totalCalories),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.onBackground
