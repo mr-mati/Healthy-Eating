@@ -2,6 +2,9 @@ package com.mati.tracker_presentation.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -13,6 +16,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mati.HealthyEating.R
 import java.time.LocalDate
 
@@ -24,7 +33,8 @@ fun DaySelector(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -35,9 +45,15 @@ fun DaySelector(
             )
         }
         Text(
+           modifier = Modifier
+               .align(Alignment.CenterVertically),
             text = parseDateText(date = date),
-            style = MaterialTheme.typography.h2
-        )
+           fontWeight = FontWeight.Bold,
+           style = TextStyle(
+               fontSize = 22.sp,
+               fontFamily = FontFamily(Font(R.font.eriega))
+           )
+       )
         IconButton(onClick = onNextDayClick) {
             Icon(
                 imageVector = Icons.Default.ArrowForward,

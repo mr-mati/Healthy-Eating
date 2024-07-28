@@ -3,7 +3,6 @@ package com.mati.tracker_presentation.tracker_main.Meal
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -39,6 +38,9 @@ import kotlinx.coroutines.delay
 @Composable
 fun MealItem(
     title: String, icon: Int,
+    crabs: Int,
+    protein: Int,
+    fat: Int,
 ) {
     var startAnimation by remember {
         mutableStateOf(false)
@@ -59,7 +61,7 @@ fun MealItem(
             .height(100.dp)
             .padding(16.dp)
             .alpha(alpha),
-        onClick = {  },
+        onClick = { },
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFFF5F5F5))
     ) {
@@ -88,9 +90,9 @@ fun MealItem(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                MealTrackerItem("crabs", 50f)
-                MealTrackerItem("protein", 100f)
-                MealTrackerItem("fat", 30f)
+                MealTrackerItem("crabs", crabs.toFloat())
+                MealTrackerItem("protein", protein.toFloat())
+                MealTrackerItem("fat", fat.toFloat())
             }
         }
     }
