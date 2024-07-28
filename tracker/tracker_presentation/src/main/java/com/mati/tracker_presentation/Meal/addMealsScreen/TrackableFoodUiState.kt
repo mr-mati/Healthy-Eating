@@ -1,4 +1,4 @@
-package com.mati.tracker_presentation.search
+package com.mati.tracker_presentation.Meal.addMealsScreen
 
 import com.mati.tracker_domain.model.TrackableFood
 
