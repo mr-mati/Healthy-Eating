@@ -80,7 +80,7 @@
     <string name="protein">Protein</string>
     <string name="fat">Fat</string>
 
-    <string name="nutrient_info">%dg • %dkcal</string>
+    <string name="nutrient_info">(%dg • %dkcal)</string>
     <string name="amount_info">%dg</string>
     <string name="grams">g</string>
     <string name="extend">Extend</string>

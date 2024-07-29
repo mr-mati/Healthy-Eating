@@ -180,16 +180,28 @@ fun TrackerScreen(
                                         .fillMaxWidth()
                                         .padding(horizontal = spacing.spaceSmall)
                                 ) {
-                                    response.trackedFoods.forEach { food ->
-                                        FoodItem(
-                                            trackedFood = food,
-                                            onDeleteClick = {
-                                                viewModel.onEvent(
-                                                    TrackerEvent
-                                                        .OnDeleteTrackedFoodClick(food)
-                                                )
-                                            }
+                                    Text(
+                                        modifier = Modifier
+                                            .padding(8.dp),
+                                        text = "Your Foods",
+                                        fontWeight = FontWeight.Bold,
+                                        style = TextStyle(
+                                            fontSize = 18.sp,
+                                            fontFamily = FontFamily(Font(R.font.eriega))
                                         )
+                                    )
+                                    response.trackedFoods.forEach { food ->
+                                        if (food.mealType.name == it) {
+                                            FoodItem(
+                                                trackedFood = food,
+                                                onDeleteClick = {
+                                                    viewModel.onEvent(
+                                                        TrackerEvent
+                                                            .OnDeleteTrackedFoodClick(food)
+                                                    )
+                                                }
+                                            )
+                                        }
                                     }
                                 }
                             }

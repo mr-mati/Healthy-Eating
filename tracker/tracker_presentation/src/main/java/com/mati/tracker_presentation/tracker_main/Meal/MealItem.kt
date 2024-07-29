@@ -53,7 +53,7 @@ fun MealItem(
     protein: Int,
     fat: Int,
     onToggleClick: () -> Unit,
-    content: @Composable () -> Unit,
+    content: @Composable (String) -> Unit,
 ) {
 
     val spacing = LocalSpacing.current
@@ -126,7 +126,7 @@ fun MealItem(
                     .padding(bottom = 16.dp),
                 visible = meal.isExpanded
             ) {
-                content()
+                content(meal.mealType.name)
             }
         }
     }
