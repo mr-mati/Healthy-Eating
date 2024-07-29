@@ -64,6 +64,10 @@ class AddMealsViewModel @Inject constructor(
                 )
             }
 
+            is AddMealsEvent.OnFetchNextPage -> {
+                fetchNextPage(page = event.page)
+            }
+
             is AddMealsEvent.OnTrackFoodClick -> {
                 trackFood(event)
             }

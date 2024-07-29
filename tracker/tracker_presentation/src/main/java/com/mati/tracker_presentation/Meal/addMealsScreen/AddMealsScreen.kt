@@ -59,11 +59,8 @@ fun AddMealsScreen(
 
     LaunchedEffect(lastVisibleItemIndex) {
         if (lastVisibleItemIndex != null && lastVisibleItemIndex >= state.trackableFood.size - 1) {
-            viewModel.fetchNextPage(page = state.trackableFood.size / 10 + 1)
+            viewModel.onEvent(AddMealsEvent.OnFetchNextPage(page = state.trackableFood.size / 10 + 1))
         }
-
-        println(viewModel.state.trackableFood)
-
     }
 
     LaunchedEffect(key1 = keyboardController) {

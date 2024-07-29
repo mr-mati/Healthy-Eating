@@ -18,4 +18,5 @@ sealed class AddMealsEvent {
         val date: LocalDate
     ): AddMealsEvent()
     data class OnSearchFocusChange(val isFocused: Boolean): AddMealsEvent()
+    data class OnFetchNextPage(val page: Int) : AddMealsEvent()
 }
