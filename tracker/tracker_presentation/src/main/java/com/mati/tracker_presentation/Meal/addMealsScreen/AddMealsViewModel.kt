@@ -70,6 +70,30 @@ class AddMealsViewModel @Inject constructor(
         }
     }
 
+    fun fetchNextPage(page: Int) = viewModelScope.launch {
+        state = state.copy(
+            isSearching = true,
+        )
+        trackerUseCases
+            .searchFood(state.query, page = page)
+            .onSuccess { foods ->
+                state = state.copy(
+                    trackableFood = state.trackableFood + foods.map {
+                        TrackableFoodUiState(it)
+                    },
+                    isSearching = false
+                )
+            }
+            .onFailure {
+                state = state.copy(isSearching = false)
+                _uiEvent.send(
+                    UiEvent.ShowSnackbar(
+                        UiText.StringResource(R.string.error_something_went_wrong)
+                    )
+                )
+            }
+    }
+
     private fun executeSearch() {
         viewModelScope.launch {
             state = state.copy(
@@ -84,7 +108,6 @@ class AddMealsViewModel @Inject constructor(
                             TrackableFoodUiState(it)
                         },
                         isSearching = false,
-                        query = ""
                     )
                 }
                 .onFailure {

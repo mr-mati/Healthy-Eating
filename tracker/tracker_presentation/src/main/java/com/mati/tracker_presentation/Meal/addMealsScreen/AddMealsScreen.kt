@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material3.CircularProgressIndicator
@@ -33,8 +34,8 @@ import com.mati.HealthyEating.R
 import com.mati.core.util.UiEvent
 import com.mati.coreui.LocalSpacing
 import com.mati.tracker_domain.model.MealType
-import com.mati.tracker_presentation.search.components.SearchTextField
 import com.mati.tracker_presentation.Meal.addMealsScreen.components.TrackableFoodItem
+import com.mati.tracker_presentation.search.components.SearchTextField
 import java.time.LocalDate
 
 @Composable
@@ -52,6 +53,18 @@ fun AddMealsScreen(
     val context = LocalContext.current
 
     val keyboardController = LocalSoftwareKeyboardController.current
+
+    val gridState = rememberLazyListState()
+    val lastVisibleItemIndex = gridState.layoutInfo.visibleItemsInfo.lastOrNull()?.index
+
+    LaunchedEffect(lastVisibleItemIndex) {
+        if (lastVisibleItemIndex != null && lastVisibleItemIndex >= state.trackableFood.size - 1) {
+            viewModel.fetchNextPage(page = state.trackableFood.size / 10 + 1)
+        }
+
+        println(viewModel.state.trackableFood)
+
+    }
 
     LaunchedEffect(key1 = keyboardController) {
         viewModel.uiEvent.collect { event ->
@@ -103,7 +116,10 @@ fun AddMealsScreen(
             )
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
 
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                state = gridState
+            ) {
                 items(state.trackableFood) { food ->
                     TrackableFoodItem(
                         trackableFoodUiState = food,
