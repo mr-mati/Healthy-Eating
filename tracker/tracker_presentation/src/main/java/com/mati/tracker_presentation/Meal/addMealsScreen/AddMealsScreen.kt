@@ -59,7 +59,9 @@ fun AddMealsScreen(
 
     LaunchedEffect(lastVisibleItemIndex) {
         if (lastVisibleItemIndex != null && lastVisibleItemIndex >= state.trackableFood.size - 1) {
-            viewModel.onEvent(AddMealsEvent.OnFetchNextPage(page = state.trackableFood.size / 10 + 1))
+            if (!state.isSearching) {
+                viewModel.onEvent(AddMealsEvent.OnFetchNextPage(page = state.trackableFood.size / 10 + 1))
+            }
         }
     }
 
@@ -150,7 +152,12 @@ fun AddMealsScreen(
             contentAlignment = Alignment.Center
         ) {
             when {
-                state.isSearching -> CircularProgressIndicator()
+                state.isSearching -> {
+                    if (state.trackableFood.isEmpty()) {
+                        CircularProgressIndicator()
+                    }
+                }
+
                 state.trackableFood.isEmpty() -> {
                     Text(
                         text = stringResource(id = R.string.no_results),
@@ -158,7 +165,6 @@ fun AddMealsScreen(
                         textAlign = TextAlign.Center
                     )
                 }
-
             }
         }
     }
