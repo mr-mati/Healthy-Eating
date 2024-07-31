@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -82,12 +81,21 @@ fun CircularProgress(
             )
         }
         if (visibleNumber) {
+
+            val color = if (calories > totalCalories) {
+                Color(0xFFEF9A9A)
+            } else if (calories == totalCalories) {
+                Color(0xFF71C4C4)
+            } else {
+                Color.Black
+            }
+
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
                     text = String.format("%.0f kcal", calories),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.onBackground
+                    color = color
                 )
                 Text(
                     text = String.format("%.0f kcal", totalCalories),

@@ -3,7 +3,6 @@ package com.mati.tracker_presentation.tracker_main.component
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
@@ -23,9 +22,22 @@ import com.mati.tracker_presentation.component.CircularProgress
 fun TrackerItem(
     title: String,
     data: Float,
-    maxData: Float,
-    brush: Brush
+    maxData: Float
 ) {
+
+    val brush = if (data > maxData) {
+        Brush.horizontalGradient(listOf(Color(0xFFE45757), Color(0xFFEF9A9A)))
+    } else {
+        Brush.horizontalGradient(listOf(Color(0xFF71C4C4), Color(0xFFEF9A9A)))
+    }
+
+    val color = if (data > maxData) {
+        Color(0xFFEF9A9A)
+    } else if (data == maxData) {
+        Color(0xFF71C4C4)
+    } else {
+        Color.Black
+    }
 
     val progress = (data / maxData) * 100
     Row(
@@ -55,6 +67,7 @@ fun TrackerItem(
                     text = String.format("%.0f", data),
                     style = TextStyle(
                         //fontWeight = FontWeight.Bold,
+                        color = color,
                         fontSize = 22.sp,
                         textAlign = TextAlign.Center
                     )

@@ -33,7 +33,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.annotation.ExperimentalCoilApi
 import com.mati.HealthyEating.R
 import com.mati.coreui.LocalSpacing
 import com.mati.tracker_presentation.component.CircularProgress
@@ -42,7 +41,6 @@ import com.mati.tracker_presentation.tracker_main.Meal.MealItem
 import com.mati.tracker_presentation.tracker_main.component.FoodItem
 import com.mati.tracker_presentation.tracker_main.component.TrackerItem
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun TrackerScreen(
     onNavigateToSearch: (Int, Int, Int) -> Unit,
@@ -90,7 +88,11 @@ fun TrackerScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                val brush = Brush.horizontalGradient(listOf(Color(0xFF71C4C4), Color(0xFFEF9A9A)))
+                val brush = if (response.totalCalories.toFloat() > response.caloriesGoal.toFloat()) {
+                    Brush.horizontalGradient(listOf(Color(0xFFE45757), Color(0xFFEF9A9A)))
+                } else {
+                    Brush.horizontalGradient(listOf(Color(0xFF71C4C4), Color(0xFFEF9A9A)))
+                }
                 if (response.caloriesGoal != 0) {
                     val progress =
                         (response.totalCalories.toDouble() / response.caloriesGoal.toDouble()) * 100
@@ -114,19 +116,16 @@ fun TrackerScreen(
                             "carbs",
                             response.totalCarbs.toFloat(),
                             response.carbsGoal.toFloat() / 100f,
-                            brush
                         )
                         TrackerItem(
                             "protein",
                             response.totalProtein.toFloat(),
                             response.proteinGoal.toFloat() / 100f,
-                            brush
                         )
                         TrackerItem(
                             "fat",
                             response.totalFat.toFloat(),
-                            response.fatGoal.toFloat() / 100f,
-                            brush
+                            response.fatGoal.toFloat() / 100f
                         )
                     }
 
