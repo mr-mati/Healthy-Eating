@@ -12,6 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 import com.mati.HealthyEating.navigation.Navigation
 import com.mati.HealthyEating.ui.theme.HealthyEatingTheme
 import com.mati.core.domain.prefernces.Preferences
@@ -23,11 +26,13 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var preferences: Preferences
+    private lateinit var analytics: FirebaseAnalytics
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        analytics = Firebase.analytics
         setContent {
             HealthyEatingTheme {
                 val scaffoldState = rememberScaffoldState()
