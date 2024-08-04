@@ -1,12 +1,13 @@
 package com.mati.onboarding_presentation.welcome
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -51,6 +52,17 @@ fun WelcomeScreen(
         mutableStateOf(false)
     }
 
+    var startAnimationOffsetY by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        delay(1300)
+        startAnimationOffsetY = true
+    }
+
+    val offsetY by animateDpAsState(
+        targetValue = if (startAnimationOffsetY) 0.dp else (1000).dp,
+        animationSpec = tween(1000)
+    )
+
     LaunchedEffect(Unit) {
         delay(2000)
         startAnimation = true
@@ -62,7 +74,9 @@ fun WelcomeScreen(
     )
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.primary)
     ) {
         Surface(
             modifier = Modifier
@@ -74,11 +88,6 @@ fun WelcomeScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.image),
-                    contentDescription = "",
-                    contentScale = ContentScale.Crop
-                )
                 Text(
                     text = "Welcome!",
                     color = Color.White,
@@ -92,6 +101,12 @@ fun WelcomeScreen(
             }
         }
 
+        Image(
+            painter = painterResource(id = R.drawable.image), contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -101,6 +116,7 @@ fun WelcomeScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .align(Alignment.BottomCenter)
+                    .offset(y = offsetY)
                     .padding(top = 160.dp),
                 shape = RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp),
                 colors = CardDefaults.cardColors(containerColor = Color.White)
